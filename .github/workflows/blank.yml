@@ -1,33 +1,51 @@
-# This is a basic workflow to help you get started with Actions
+name: Python package build and publish
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  release:
+    types: [created]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
     - uses: actions/checkout@v2
+      with:
+        repository: my-org/my-tools
+        path: my-tools
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Install dependencies
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        sudo apt-get update \
+        && sudo apt-get install -y  python3-dev
+        python -m pip install --upgrade pip
+        pip install twine flake8 conan
+        conan user
+        conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+        conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
+
+    - name: Lint with flake8 for syntax errors
+      run: |
+        pip install flake8
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Build manylinux Python wheels
+      uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_x86_64
+      with:
+        python-versions: 'cp36-cp36m cp37-cp37m'
+        build-requirements: 'cython numpy'
+        system-packages: 'lrzip-devel zlib-devel'
+        package-path: ''
+        pip-wheel-args: '--no-deps'
+    #- name: Publish wheels to PyPI
+    #  env:
+    #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+    #    TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      #run: |
+      #  twine upload wheelhouse/*-manylinux*.whl

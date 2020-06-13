@@ -9,7 +9,7 @@ jobs:
 
     - uses: actions/checkout@v2
       with:
-        repository: 'https://github.com/cyberduckninja/RocketJoe.git'
+        repository: 'cyberduckninja/RocketJoe.git'
         #ref: '2b3956be9e6363c57a8b814464e65fb052a36433'
 
     - name: Set up Python

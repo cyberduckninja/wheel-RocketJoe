@@ -18,9 +18,9 @@ jobs:
         pip install twine
 
     - uses: actions/checkout@v2
-        with:
-          repository: 'cyberduckninja/RocketJoe.git'
-          #ref: '2b3956be9e6363c57a8b814464e65fb052a36433'
+      with:
+        repository: 'cyberduckninja/RocketJoe.git'
+        #ref: '2b3956be9e6363c57a8b814464e65fb052a36433'
 
     - name: Build manylinux Python wheels
       uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_x86_64

@@ -30,6 +30,9 @@ jobs:
         system-packages: ''
         package-path: ''
         pip-wheel-args: '--no-deps'
+    - name: Build
+      run: |
+        python setup.py sdist bdist_wheel
     #- name: Publish wheels to PyPI
     #  env:
     #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}

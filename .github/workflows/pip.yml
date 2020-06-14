@@ -28,7 +28,7 @@ jobs:
         python-versions: 'cp36-cp36m' #cp37-cp37m'
         build-requirements: 'cmake conan'
         system-packages: ''
-        package-path: 'pip-RocketJoe'
+        #package-path: 'pip-RocketJoe'
         pip-wheel-args: '--no-deps'
     #- name: Publish wheels to PyPI
     #  env:

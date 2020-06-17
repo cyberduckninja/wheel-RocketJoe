@@ -14,10 +14,10 @@ function repair_wheel {
 # Install a system package required by our library
 #yum install -y atlas-devel
 
-#echo $(which cmake)
-#echo $( cmake --version)
+ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
-yum remove -y cmake
+echo $(which cmake)
+echo $( cmake --version)
 
 
 # Compile wheels

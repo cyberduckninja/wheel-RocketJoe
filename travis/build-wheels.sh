@@ -14,9 +14,10 @@ function repair_wheel {
 # Install a system package required by our library
 #yum install -y atlas-devel
 
-echo $(which cmake)
-echo $( cmake --version)
+#echo $(which cmake)
+#echo $( cmake --version)
 
+yum unistall cmake
 
 
 # Compile wheels

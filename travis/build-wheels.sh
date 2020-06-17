@@ -15,6 +15,9 @@ function repair_wheel {
 #yum install -y atlas-devel
 
 echo $(which cmake)
+echo $( cmake --version)
+
+
 
 # Compile wheels
 /opt/python/cp36-cp36m/bin/pip install -r /io/dev-requirements.txt

@@ -15,10 +15,14 @@ function repair_wheel {
 yum install -y atlas-devel
 
 # Compile wheels
-for PYBIN in /opt/python/*/bin; do
-    "${PYBIN}/pip" install -r /io/dev-requirements.txt
-    "${PYBIN}/pip" wheel /io/ --no-deps -w wheelhouse/
-done
+/opt/python/cp35-35mu/pip install -r /io/dev-requirements.txt
+/opt/python/cp35-35mu/pip wheel /io/ --no-deps -w wheelhouse/
+
+/opt/python/cp36-36mu/pip install -r /io/dev-requirements.txt
+/opt/python/cp36-36mu/pip wheel /io/ --no-deps -w wheelhouse/
+
+/opt/python/cp37-37mu/pip install -r /io/dev-requirements.txt
+/opt/python/cp37-37mu/pip wheel /io/ --no-deps -w wheelhouse/
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/*.whl; do
@@ -26,7 +30,13 @@ for whl in wheelhouse/*.whl; do
 done
 
 # Install packages and test
-for PYBIN in /opt/python/*/bin/; do
-    "${PYBIN}/pip" install python-manylinux-demo --no-index -f /io/wheelhouse
-    (cd "$HOME"; "${PYBIN}/nosetests" pymanylinuxdemo)
-done
+
+/opt/python/cp35-35mu/pip install python-manylinux-demo --no-index -f /io/wheelhouse
+(cd "$HOME";  "/opt/python/cp35-35mu/nosetests" pymanylinuxdemo)
+
+/opt/python/cp36-36mu/pip install python-manylinux-demo --no-index -f /io/wheelhouse
+(cd "$HOME";  "/opt/python/cp36-36mu/nosetests" pymanylinuxdemo)
+
+/opt/python/cp37-37mu/pip install python-manylinux-demo --no-index -f /io/wheelhouse
+(cd "$HOME";  "/opt/python/cp37-37mu/nosetests" pymanylinuxdemo)
+

@@ -20,6 +20,8 @@ function repair_wheel {
 rm /usr/bin/cmake
 ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
+echo $(ls -alh)
+
 /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/
 
 

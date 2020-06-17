@@ -19,10 +19,6 @@ function repair_wheel {
 
 ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
-echo $(which cmake)
-echo $( cmake --version)
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-
 /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/
 
 

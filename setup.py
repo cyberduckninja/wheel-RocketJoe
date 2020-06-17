@@ -91,5 +91,5 @@ setup(
     cmdclass=dict(build_ext=CMakeBuild),
     ext_modules=[CMakeExtension('RocketJoe')],
     zip_safe=False,
-    python_requires='>=3.6'
+    # python_requires='>=3.6'
 )

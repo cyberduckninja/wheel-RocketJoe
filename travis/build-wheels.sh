@@ -17,6 +17,7 @@ function repair_wheel {
 # Compile wheels
 /opt/python/cp36-cp36m/bin/pip install -r /io/dev-requirements.txt
 
+rm /usr/bin/cmake
 ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
 /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/

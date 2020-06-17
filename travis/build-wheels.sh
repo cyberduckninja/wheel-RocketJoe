@@ -17,7 +17,7 @@ function repair_wheel {
 #echo $(which cmake)
 #echo $( cmake --version)
 
-yum unistall cmake
+yum remove -y cmake
 
 
 # Compile wheels

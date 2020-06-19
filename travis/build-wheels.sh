@@ -23,8 +23,8 @@ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-co
 conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
 conan profile new default --detect
 conan profile update settings.compiler.libcxx=libstdc++11 default
-sudo pwd
-sudo ls -alh
+echo $(pwd)
+echo $(ls -alh)
 conan install \
              -b missing \
              -b boost \

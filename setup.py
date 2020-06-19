@@ -6,7 +6,6 @@ import shutil
 import os
 from pprint import pprint
 
-
 from distutils.version import LooseVersion
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -71,10 +70,10 @@ class CMakeBuild(build_ext):
             env=env
         )
         print("111111111111111111111111111")
-        dirlist = os.listdir(self.build_temp)
-        pprint(dirlist)
+        # dirlist = os.listdir(self.build_temp+"/build")
+        # pprint(dirlist)
 
-        dirlist = os.listdir(ext.sourcedir)
+        dirlist = os.listdir(ext.sourcedir + "/build")
         pprint(dirlist)
 
         shutil.copyfile(

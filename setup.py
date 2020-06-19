@@ -82,7 +82,7 @@ class CMakeBuild(build_ext):
 setup(
     name="RocketJoe",  # Replace with your own username
     version="1.0.0",
-    athor="Example Author",
+    author="Example Author",
     author_email="cuberduckninja@gmail.com",
     # packages=find_packages(),
     description='An example cmake extension module',

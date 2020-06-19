@@ -23,10 +23,9 @@ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-co
 conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
 conan profile new default --detect
 conan profile update settings.compiler.libcxx=libstdc++11 default
-#echo $(ls /io)
 
-echo $(python --version)
-echo $(which python)
+rm /usr/bin/python
+ln -s /opt/python/cp36-cp36m/bin/python /usr/bin/python
 
 conan install \
              -b missing \

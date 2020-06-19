@@ -1,9 +1,11 @@
-import os
 import re
 import sys
 import platform
 import subprocess
 import shutil
+import os
+from pprint import pprint
+
 
 from distutils.version import LooseVersion
 from setuptools import setup, Extension
@@ -69,8 +71,12 @@ class CMakeBuild(build_ext):
             env=env
         )
         print("111111111111111111111111111")
-        print(self.build_temp)
-        print(ext.sourcedir)
+        dirlist = os.listdir(self.build_temp)
+        pprint(dirlist)
+
+        dirlist = os.listdir(ext.sourcedir)
+        pprint(dirlist)
+
         shutil.copyfile(
             ext.sourcedir + "/" + "conanfile.txt",
             ext.sourcedir + "/" + self.build_temp + "/" + "conanfile.txt"
@@ -89,8 +95,10 @@ class CMakeBuild(build_ext):
             cwd=self.build_temp,
             env=env
         )
-        subprocess.check_call(['cmake', '--build', '.'] + build_args,
-                              cwd=self.build_temp)
+        subprocess.check_call(
+            ['cmake', '--build', '.'] + build_args,
+            cwd=self.build_temp
+        )
         print()  # Add an empty line for cleaner output
 
 

@@ -26,6 +26,7 @@ conan profile update settings.compiler.libcxx=libstdc++11 default
 #echo $(ls /io)
 
 echo $(python --version)
+echo $(which python)
 
 conan install \
              -b missing \

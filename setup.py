@@ -72,12 +72,6 @@ class CMakeBuild(build_ext):
         )
 
         subprocess.check_call(
-            ["conan", "install", "conan_path", "--build missing -s build_type=Debug -s compiler.libcxx=libstdc++11"],
-            cwd=self.build_temp,
-            env=env
-        )
-
-        subprocess.check_call(
             ['cmake', ext.sourcedir] + cmake_args,
             cwd=self.build_temp,
             env=env

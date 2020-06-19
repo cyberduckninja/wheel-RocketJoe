@@ -63,34 +63,11 @@ class CMakeBuild(build_ext):
             self.distribution.get_version())
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
-        print("111111111111111111111111111")
-        subprocess.check_call(
-            ['ls', ext.sourcedir],
-            cwd=self.build_temp,
-            env=env
-        )
-        print("111111111111111111111111111")
-        # dirlist = os.listdir(self.build_temp+"/build")
-        # pprint(dirlist)
-
-        dirlist = os.listdir(ext.sourcedir + "/" + self.build_temp)
-        pprint(dirlist)
 
         shutil.copyfile(
             ext.sourcedir + "/" + "conanfile.txt",
             ext.sourcedir + "/" + self.build_temp + "/" + "conanfile.txt"
         )
-
-        dirlist = os.listdir(ext.sourcedir + "/" + self.build_temp)
-        pprint(dirlist)
-        print("222222222222222222222222")
-        subprocess.check_call(
-            ['ls', ext.sourcedir],
-            cwd=self.build_temp,
-            env=env
-        )
-
-        print("222222222222222222222222")
 
         subprocess.check_call(
             ['cmake', ext.sourcedir] + cmake_args,

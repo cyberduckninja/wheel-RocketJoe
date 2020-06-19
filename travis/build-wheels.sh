@@ -16,12 +16,13 @@ function repair_wheel {
 
 # Compile wheels
 /opt/python/cp36-cp36m/bin/pip install -r /io/dev-requirements.txt
-
-/opt/python/cp36-cp36m/bin/conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-/opt/python/cp36-cp36m/bin/conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
+ln -s /opt/python/cp36-cp36m/bin/conan /usr/bin/conan
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
 
 rm /usr/bin/cmake
 ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
+
 
 /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/
 

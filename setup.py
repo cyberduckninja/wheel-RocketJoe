@@ -64,9 +64,17 @@ class CMakeBuild(build_ext):
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
 
+        conan_path = ext.sourcedir + "/" + self.build_temp + "/" + "conanfile.txt"
+
         shutil.copyfile(
             ext.sourcedir + "/" + "conanfile.txt",
-            ext.sourcedir + "/" + self.build_temp + "/" + "conanfile.txt"
+            conan_path
+        )
+
+        subprocess.check_call(
+            ["conan", "install", "conan_path", "--build missing -s build_type=Debug -s compiler.libcxx=libstdc++11"],
+            cwd=self.build_temp,
+            env=env
         )
 
         subprocess.check_call(

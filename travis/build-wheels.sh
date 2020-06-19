@@ -23,7 +23,7 @@ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-co
 conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
 conan profile new default --detect
 conan profile update settings.compiler.libcxx=libstdc++11 default
-echo $(ls /io)
+#echo $(ls /io)
 conan install \
              -b missing \
              -b boost \
@@ -33,7 +33,7 @@ conan install \
              -b libsodium \
              -s build_type=Debug \
              -s compiler.libcxx=libstdc++11 \
-             .
+             /io/conanfile.txt
 
 rm /usr/bin/cmake
 

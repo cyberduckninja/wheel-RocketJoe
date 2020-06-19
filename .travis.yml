@@ -12,7 +12,9 @@ matrix:
            PLAT=manylinux2010_x86_64
 
 install:
-  - git clone https://github.com/cyberduckninja/RocketJoe.git
+  - git clone https://github.com/cyberduckninja/RocketJoe.git temp
+  - mv temp/.git code/.git
+  - rm -rf temp
   - docker pull $DOCKER_IMAGE
 
 script:

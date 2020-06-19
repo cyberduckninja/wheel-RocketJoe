@@ -17,6 +17,9 @@ function repair_wheel {
 # Compile wheels
 /opt/python/cp36-cp36m/bin/pip install -r /io/dev-requirements.txt
 
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
+
 rm /usr/bin/cmake
 ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 

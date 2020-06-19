@@ -70,7 +70,7 @@ class CMakeBuild(build_ext):
         )
 
         subprocess.check_call(
-            ['cmake', ext.sourcedir+"RocketJoe"] + cmake_args,
+            ['cmake', ext.sourcedir+"/RocketJoe"] + cmake_args,
             cwd=self.build_temp,
             env=env
         )

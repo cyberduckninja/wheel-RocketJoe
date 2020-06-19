@@ -21,6 +21,7 @@ ln -s /opt/python/cp36-cp36m/bin/conan /usr/bin/conan
 
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
+conan install --generator
 conan profile update settings.compiler.libcxx=libstdc++11 default
 
 conan install \

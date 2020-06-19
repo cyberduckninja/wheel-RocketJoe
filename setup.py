@@ -71,7 +71,10 @@ class CMakeBuild(build_ext):
         print("111111111111111111111111111")
         print(self.build_temp)
         print(ext.sourcedir)
-        shutil.copyfile(self.build_temp+"/"+"conanfile.txt", self.build_temp+"/"+ext.sourcedir+"/conanfile.txt")
+        shutil.copyfile(
+            ext.sourcedir + "/" + "conanfile.txt",
+            ext.sourcedir + "/" + self.build_temp + "/" + "conanfile.txt"
+        )
         print("222222222222222222222222")
         subprocess.check_call(
             ['ls', ext.sourcedir],

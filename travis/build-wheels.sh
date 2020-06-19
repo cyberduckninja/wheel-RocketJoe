@@ -16,11 +16,14 @@ function repair_wheel {
 
 # Compile wheels
 /opt/python/cp36-cp36m/bin/pip install -r /io/dev-requirements.txt
+
 ln -s /opt/python/cp36-cp36m/bin/conan /usr/bin/conan
+
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
+conan profile update settings.compiler.libcxx=libstdc++11 default
 
-conan install . \
+conan install \
              -b missing \
              -b boost \
              -b fmt \
@@ -29,8 +32,10 @@ conan install . \
              -b libsodium \
              -s build_type=Debug \
              -s compiler.libcxx=libstdc++11 \
+             .
 
 rm /usr/bin/cmake
+
 ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
 

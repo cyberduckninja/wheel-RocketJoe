@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Git clone project
       run: |
-        git clone https://github.com/cyberduckninja/RocketJoe.git temp
+        git clone --branch centos-6 https://github.com/cyberduckninja/RocketJoe.git temp
         mv temp/* .
         rm -rf temp
     - name: Build the Docker image

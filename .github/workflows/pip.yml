@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Git clone project
+      run: |
+        git clone https://github.com/cyberduckninja/RocketJoe.git temp
+        mv temp/* .
+        rm -rf temp
     - name: Build the Docker image
       run: docker build . --file manylinux201x/Dockerfile-x86_64_base_2010 --tag my-image-name:$(date +%s)
 

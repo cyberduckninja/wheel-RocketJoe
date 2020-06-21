@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile-x86_64_base_2010 --tag my-image-name:$(date +%s)
+      run: docker build . --file manylinux201x/Dockerfile-x86_64_base_2010 --tag my-image-name:$(date +%s)
 
     #- name: Set up Python
     #  uses: actions/setup-python@v1

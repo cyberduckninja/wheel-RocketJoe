@@ -5,7 +5,7 @@ RUN /opt/python/cp36-cp36m/bin/pip install conan cmake
 RUN ln -s /opt/python/cp36-cp36m/bin/conan /usr/bin/conan
 
 RUN conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-RUN conan remote add jinncrafters https://api.bintray.com/conan/jinncrafters/conan
+RUN conan remote add cyberduckninja https://api.bintray.com/conan/cyberduckninja/conan
 RUN conan profile new default --detect
 RUN conan profile update settings.compiler.libcxx=libstdc++11 default
 

@@ -29,3 +29,12 @@ RUN ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
 
 RUN /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/
+
+#for whl in wheelhouse/*.whl; do
+#    repair_wheel "$whl"
+#done
+
+# Install packages and test
+
+#/opt/python/cp36-cp36m/bin/pip install python-manylinux-demo --no-index -f /io/wheelhouse
+#(cd "$HOME";  "/opt/python/cp36-cp36m/nosetests" pymanylinuxdemo)

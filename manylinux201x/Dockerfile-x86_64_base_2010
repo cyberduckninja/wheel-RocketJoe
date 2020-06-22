@@ -30,7 +30,7 @@ RUN conan install \
 
 COPY ./ .
 
-RUN /opt/python/cp36-cp36m/bin/pip wheel . --no-deps -w wheelhouse/
+RUN /opt/python/cp36-cp36m/bin/pip wheel . --no-deps -w .
 
 #for whl in wheelhouse/*.whl; do
 #    repair_wheel "$whl"

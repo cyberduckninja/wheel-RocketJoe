@@ -90,7 +90,7 @@ class CMakeBuild(build_ext):
             env=env
         )
         subprocess.check_call(
-            ['cmake', '--build', '.'] + build_args,
+            ['cmake', '--build', '.',"--target","rocketjoed"] + build_args,
             cwd=self.build_temp
         )
         print()  # Add an empty line for cleaner output

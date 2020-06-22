@@ -1,0 +1,1 @@
+FROM quay.io/pypa/manylinux1_x86_64:2020-03-07-9c5ba95

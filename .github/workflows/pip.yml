@@ -1,0 +1,46 @@
+name: Python package build and publish
+
+on: [push, pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Git clone project
+      run: |
+        git clone --branch centos-6 https://github.com/cyberduckninja/RocketJoe.git temp
+        mv temp/* .
+        rm -rf temp
+    - name: Build the Docker image
+      run: docker build . --file manylinux201x/Dockerfile-x86_64_base_2010 --tag my-image-name:$(date +%s)
+
+    #- name: Set up Python
+    #  uses: actions/setup-python@v1
+    #  with:
+    #    python-version: 3.8
+
+    #- name: Install dependencies
+    #  run: |
+    #    python -m pip install --upgrade pip
+    #    pip install twine
+
+    #- uses: actions/checkout@v2
+    #  with:
+    #    repository: 'cyberduckninja/RocketJoe.git'
+    #    #ref: '2b3956be9e6363c57a8b814464e65fb052a36433'
+
+    #- name: Build manylinux Python wheels
+    #  uses: RalfG/python-wheels-manylinux-build@v0.2.2-manylinux2010_x86_64
+    #  with:
+    #    python-versions: 'cp36-cp36m' #cp37-cp37m'
+    #    build-requirements: 'cmake conan'
+    #    system-packages: ''
+        #package-path: 'pip-RocketJoe'
+    #    pip-wheel-args: '--no-deps'
+    #- name: Publish wheels to PyPI
+    #  env:
+    #    TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+    #    TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      #run: |
+      #  twine upload wheelhouse/*-manylinux*.whl

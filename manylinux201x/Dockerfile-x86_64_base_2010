@@ -1,0 +1,42 @@
+FROM quay.io/pypa/manylinux2010_x86_64:2020-03-07-1825e8f
+
+RUN /opt/python/cp36-cp36m/bin/pip install conan cmake
+
+RUN ln -s /opt/python/cp36-cp36m/bin/conan /usr/bin/conan
+
+RUN rm /usr/bin/cmake
+
+RUN ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
+
+RUN conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+RUN conan remote add cyberduckninja https://api.bintray.com/conan/cyberduckninja/conan
+RUN conan profile new default --detect
+RUN conan profile update settings.compiler.libcxx=libstdc++11 default
+
+RUN rm /usr/bin/python
+RUN ln -s /opt/python/cp36-cp36m/bin/python /usr/bin/python
+COPY ./conanfile.txt .
+RUN conan install \
+             -b missing \
+             -b boost \
+             -b fmt \
+             -b spdlog \
+             -b botan \
+             -b libsodium \
+             -s build_type=Debug \
+             -s compiler.libcxx=libstdc++11 \
+             conanfile.txt
+
+
+COPY ./ .
+
+RUN /opt/python/cp36-cp36m/bin/pip wheel . --no-deps -w . -v
+
+#for whl in wheelhouse/*.whl; do
+#    repair_wheel "$whl"
+#done
+
+# Install packages and test
+
+#/opt/python/cp36-cp36m/bin/pip install python-manylinux-demo --no-index -f /io/wheelhouse
+#(cd "$HOME";  "/opt/python/cp36-cp36m/nosetests" pymanylinuxdemo)

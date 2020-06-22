@@ -28,9 +28,9 @@ RUN conan install \
              conanfile.txt
 
 
+COPY ./ .
 
-
-RUN /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/
+RUN /opt/python/cp36-cp36m/bin/pip wheel . --no-deps -w wheelhouse/
 
 #for whl in wheelhouse/*.whl; do
 #    repair_wheel "$whl"

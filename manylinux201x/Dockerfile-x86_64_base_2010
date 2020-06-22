@@ -1,10 +1,12 @@
 FROM quay.io/pypa/manylinux2010_x86_64:2020-03-07-1825e8f
 
-RUN yum unistall cmake
-
 RUN /opt/python/cp36-cp36m/bin/pip install conan cmake
 
 RUN ln -s /opt/python/cp36-cp36m/bin/conan /usr/bin/conan
+
+RUN rm /usr/bin/cmake
+
+RUN ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
 RUN conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 RUN conan remote add cyberduckninja https://api.bintray.com/conan/cyberduckninja/conan
@@ -25,9 +27,7 @@ RUN conan install \
              -s compiler.libcxx=libstdc++11 \
              conanfile.txt
 
-RUN rm /usr/bin/cmake
 
-RUN ln -s /opt/python/cp36-cp36m/bin/cmake /usr/bin/cmake
 
 
 RUN /opt/python/cp36-cp36m/bin/pip wheel /io/ --no-deps -w wheelhouse/

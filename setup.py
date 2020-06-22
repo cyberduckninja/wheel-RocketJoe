@@ -9,6 +9,19 @@ from pprint import pprint
 from distutils.version import LooseVersion
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
+from setuptools.dist import Distribution
+
+
+# class BinaryDistribution(Distribution):
+#    def is_pure(self):
+#        return False
+
+
+# class BinaryDistribution(Distribution):
+#    """Distribution which always forces a binary package with platform name"""
+
+#    def has_ext_modules(foo):
+#        return True
 
 
 class CMakeExtension(Extension):
